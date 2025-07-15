@@ -66,3 +66,5 @@ pad2.GetFrame().SetBorderSize(5)
 h1d.SetFillColor(45)
 h1d.Draw()
 c1.Update()
+
+input("Çıkmak için Enter'a basın...")
