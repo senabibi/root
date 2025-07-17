@@ -31,6 +31,7 @@ for i in range(1,101) :
    sum += h1.GetBinContent(i)
    hint1.SetBinContent(i,sum)
 
+print(hint1.values())
 rightmax = 1.1*hint1.GetMaximum()
 scale = ROOT.gPad.GetUymax()/rightmax
 hint1.SetLineColor("kRed")
@@ -42,3 +43,5 @@ axis = ROOT.TGaxis(ROOT.gPad.GetUxmax(),ROOT.gPad.GetUymin(),
 axis.SetLineColor("kRed")
 axis.SetLabelColor("kRed")
 axis.Draw()
+c1.Update()
+input("Press Enter to continue...")

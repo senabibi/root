@@ -1,44 +1,23 @@
-## \file
-## \ingroup tutorial_hist
-## \notebook
-## Example of macro illustrating how to superimpose two histograms
-## with different scales in the "same" pad.
-## Inspired by work of Rene Brun.
-##
-## \macro_image
-## \macro_code
-##
-## \author Alberto Ferro
-
 import ROOT
 import numpy as np
+import matplotlib.pyplot as plt
+import mplhep as hep
 
-c1 = ROOT.TCanvas("c1","hists with different scales",600,400)
+np.random.seed(0)
+plt.style.use(hep.style.ROOT)
+h1 = ROOT.TH1F("h1", "my histogram", 100, -3, 3)
+hint1 = ROOT.TH1F("hint1", "h1 bins integral", 100, -3, 3)
+counts,_= np.histogram(np.random.normal(0, 1, 10000), range=(-3,3), bins=100)
+h1[...]=counts  # Fill h1 with the generated random numbers
 
-ROOT.gStyle.SetOptStat(False)
+# Numpy ile kümülatif toplamı hesapla ve hint1'e ata
+hint1[...] = np.cumsum(h1.values())
 
-h1 = ROOT.TH1F("h1","my histogram",100,-3,3)
-
-h1.Fill(np.array([ROOT.gRandom.Gaus(0, 1) for _ in range(10000)]))
-
-h1.Draw()
-c1.Update()
-
-hint1 = ROOT.TH1F("hint1","h1 bins integral",100,-3,3)
-
-sum = 0
-for i in range(1,101) :
-   sum += h1.GetBinContent(i)
-   hint1.SetBinContent(i,sum)
-
-rightmax = 1.1*hint1.GetMaximum()
-scale = ROOT.gPad.GetUymax()/rightmax
-hint1.SetLineColor("kRed")
-hint1.Scale(scale)
-hint1.Draw("same")
-
-axis = ROOT.TGaxis(ROOT.gPad.GetUxmax(),ROOT.gPad.GetUymin(),
-      ROOT.gPad.GetUxmax(), ROOT.gPad.GetUymax(),0,rightmax,510,"+L")
-axis.SetLineColor("kRed")
-axis.SetLabelColor("kRed")
-axis.Draw()
+fig, ax1 = plt.subplots(figsize=(10, 6))
+hep.histplot(h1,ax=ax1,histtype='fill',color='white',edgecolor='blue',linewidth=1.5,alpha=0.5)
+ax2 = ax1.twinx()
+hep.histplot(hint1,ax=ax2,histtype='errorbar',color='red',marker='+',markersize=3)
+ax1.set_xlim(-3, 3)
+plt.title("Histogram with Cumulative Sum")
+plt.tight_layout()
+plt.show()

@@ -43,26 +43,21 @@ for i in range(1, N_EVENTS + 1):
     # Update plot periodically
     if i % K_UPDATE == 0:
         ax.cla()
-        # Calculate statistics
-   
-
-# Assuming 'hep.histogram' is a ROOT TH1
         entries = total.GetEntries()
         mean = total.GetMean()
         stddev = total.GetStdDev()
         stats_text = f'Entries = {entries}\nMean = {mean:.2f}\nStd Dev = {stddev:.2f}'
         hep.histplot(main, histtype='fill', color='gray',alpha=0.5,edgecolor='blue',  linewidth=1.5, ax=ax)
-        hep.histplot(total,histtype='errorbar', color='black', ecolor='blue', linewidth=2, marker='+', ax=ax)
+        hep.histplot(total,histtype='errorbar', color='black', ecolor='blue', linewidth=2, ax=ax)
         hep.histplot(s1,histtype='errorbar', color="blue", alpha=0.7,ecolor='blue', linewidth=2, marker='+', ax=ax)
         hep.histplot(s2,histtype='errorbar', color='blue', alpha=0.7, ecolor='blue', linewidth=2, marker='+', ax=ax)
         ax.set_title("This is the total distribution", pad=20, fontsize=14, loc='center')
-        ax.text( 0.95, 0.90, stats_text, transform=ax.transAxes, ha='right', va='top', fontsize=8, bbox=dict(facecolor='white',edgecolor='black',boxstyle='round,pad=0.2',alpha=0.9)
-)
+        ax.text( 0.95, 0.90, stats_text, transform=ax.transAxes, ha='right', va='top', fontsize=8, bbox=dict(facecolor='white',edgecolor='black',boxstyle='round,pad=0.2',alpha=0.9))
         # Plot formatting
         ax.set_xlim(RANGE_MIN, RANGE_MAX)
         ax.set_ylim(0, max(counts['total']) * 1.2)
         plt.pause(0.01)
-
 # Keep the final plot open
+plt.grid(True)
 plt.ioff()
 plt.show()
