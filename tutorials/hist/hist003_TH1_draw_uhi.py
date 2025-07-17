@@ -31,7 +31,6 @@ plt.xlim(rangeMin, rangeMax)
 plt.ylim(bottom=0)
 # Second Histogram
 plt.axes([0.05, 0.05, 0.90, 0.40])
-hep.histplot(h1d, yerr=False ,color='blue')
 hep.histplot(h1d, yerr=False, histtype="fill", color='brown', alpha=0.7, edgecolor='blue')
 plt.title("Test random numbers")
 plt.xlabel("x")

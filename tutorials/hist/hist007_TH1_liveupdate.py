@@ -85,3 +85,5 @@ c1.Modified()
 c1.Update()
 
 gBenchmark.Show( 'hsum' )
+
+input("Press Enter to exit...")  # Keep the window open until user input
