@@ -85,5 +85,6 @@ pave.AddText( 'You can modify bin contents' )
 pave.Draw()
 c1.Update()
 
-if (example.IsOpen()):
-    example.Close()
+#if (example.IsOpen()):
+ #   example.Close()
+input("Press Enter to exit...")  # Keep the canvas open until user input
