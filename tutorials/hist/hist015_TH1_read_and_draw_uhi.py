@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import mplhep as hep
 from mpl_toolkits.mplot3d import Axes3D
 from ROOT import TFile
-
 plt.style.use(hep.style.ROOT)
 f = TFile("py-hsimple.root")
 hpx = f.Get("hpx")
