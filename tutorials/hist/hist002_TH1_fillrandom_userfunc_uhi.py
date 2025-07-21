@@ -10,7 +10,7 @@ gausMean = 4.0    # [1]
 gausVar = 1.0     # [2]
 form1Scale = 20.0 # [3]
 sqroot.SetParameters(gausScale, gausMean, gausVar, form1Scale)
-h1d = ROOT.TH1D("h1d", "Test random numbers", 200, 0.0, 10.0)
+h1d = ROOT.TH1D("h1d", "Test random numbers", 200, rangeMin, rangeMax)
 # Use our user-defined function to fill the histogram with random values sampled from it.
 # Simple approximation using just uniform random numbers
 random_numbers = np.array([sqroot.GetRandom() for _ in range(10000)])

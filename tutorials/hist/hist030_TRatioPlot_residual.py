@@ -31,4 +31,5 @@ rp1.GetLowerRefYaxis().SetTitle("ratio")
 rp1.GetUpperRefYaxis().SetTitle("entries")
 
 c1.Update()
+input("Press Enter to continue...")
 

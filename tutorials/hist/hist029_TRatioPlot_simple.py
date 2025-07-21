@@ -24,18 +24,24 @@ f1.SetParameter(0,3)
 
 h1.FillRandom(f1, 1900)
 h2.FillRandom(f1, 2000)
-h1.Sumw2()
-h2.Scale(1.9/2.)
 
-h1.GetXaxis().SetTitle("x")
-h1.GetYaxis().SetTitle("y")
+import mplhep as hep
+import matplotlib.pyplot as plt
 
-rp = ROOT.TRatioPlot(h1,h2)
+hep.histplot(h1)
+plt.show()
+# h1.Sumw2()
+# h2.Scale(1.9/2.)
 
-c1.SetTicks(0,1)
-rp.GetLowYaxis().SetNdivisions(505)
-c1.Update()
-c1.Draw()
-rp.Draw()
+# h1.GetXaxis().SetTitle("x")
+# h1.GetYaxis().SetTitle("y")
 
-input("Press Enter to continue...")
+# rp = ROOT.TRatioPlot(h1,h2)
+
+# c1.SetTicks(0,1)
+# rp.GetLowYaxis().SetNdivisions(505)
+# c1.Update()
+# c1.Draw()
+# rp.Draw()
+
+# input("Press Enter to continue...")

@@ -31,3 +31,4 @@ rp1.GetLowerRefGraph().SetMinimum(-2)
 rp1.GetLowerRefGraph().SetMaximum(2)
 
 c1.Update()
+input("Press Enter to continue...")
