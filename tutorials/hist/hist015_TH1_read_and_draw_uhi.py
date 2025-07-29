@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import mplhep as hep
 from mpl_toolkits.mplot3d import Axes3D
 from ROOT import TFile
-plt.style.use(hep.style.ROOT)
 f = TFile("py-hsimple.root")
 hpx = f.Get("hpx")
 entries = int(hpx.GetEntries())
@@ -35,5 +34,4 @@ hep.histplot(hpx, ax=ax3, histtype='errorbar', color='darkblue')
 ax3.grid(True)
 ax3.text(0.90, 0.95, info_text, transform=ax3.transAxes, verticalalignment='top',fontsize=10, bbox=dict(boxstyle="round,pad=0.3", facecolor='white', alpha=0.7))
 mpl_fig.suptitle("Drawing options for one dimensional histograms", fontsize=14, fontweight='bold')
-plt.tight_layout()
 plt.show()
