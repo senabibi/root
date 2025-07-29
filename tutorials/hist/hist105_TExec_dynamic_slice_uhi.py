@@ -71,11 +71,8 @@ def main():
     main_canvas.SetFrameFillColor(33)
     hpxpy = TH2F('hpxpy', 'py vs px', 40, -4, 4, 40, -4, 4)
     hpxpy.SetStats(0)
-    x=np.random.normal(0, 1, 50000)
-    y=np.random.normal(0, 1, 50000)
-    hpxpy[:, :] = np.histogram2d(x, y, bins=(40, 40), range=[[-4, 4], [-4, 4]])[0]
+    hpxpy[:, :] = np.histogram2d(np.random.normal(0, 1, 50000), np.random.normal(0, 1, 50000), bins=(40, 40), range=[[-4, 4], [-4, 4]])[0]
     hpxpy.Draw("COL")
-    input("Move the mouse in the canvas to see dynamic slices")
     import __main__
     __main__.slicer = DynamicSlicer()
     main_canvas.AddExec("dynamic", "TPython::Exec('slicer()')")
