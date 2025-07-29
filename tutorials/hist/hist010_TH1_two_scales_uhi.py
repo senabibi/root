@@ -2,12 +2,10 @@ import ROOT
 import numpy as np
 import matplotlib.pyplot as plt
 import mplhep as hep
-
 np.random.seed(0)
 plt.style.use(hep.style.ROOT)
 h1 = ROOT.TH1F("h1", "my histogram", 100, -3, 3)
-counts,_= np.histogram(np.random.normal(0, 1, 10000), range=(-3,3), bins=100)
-h1[...]=counts  
+h1[...]=np.histogram(np.random.normal(0, 1, 10000), range=(-3,3), bins=100)[0]  
 hint1 = ROOT.TH1F("hint1", "h1 bins integral", 100, -3, 3)
 hint1[...] = np.cumsum(h1.values())
 fig, ax1 = plt.subplots(figsize=(10, 6))
