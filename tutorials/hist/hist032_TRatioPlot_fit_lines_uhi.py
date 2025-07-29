@@ -3,9 +3,7 @@ import numpy as np
 ROOT.gStyle.SetOptStat(0)
 c1 = ROOT.TCanvas("c1", "fit residual simple")
 h1 = ROOT.TH1D("h1", "h1", 50, -5, 5)
-random_numbers = np.random.normal(0.0, 1.0, 2000)
-counts, _ = np.histogram(random_numbers, bins=50, range=(-5, 5))
-h1[:]=counts
+h1[:]=np.histogram(np.random.normal(0.0, 1.0, 2000), bins=50, range=(-5, 5))[0]
 h1.Fit("gaus")
 h1.GetXaxis().SetTitle("x")
 h1.GetYaxis().SetTitle("y")
