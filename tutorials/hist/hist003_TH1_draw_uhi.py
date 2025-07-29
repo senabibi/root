@@ -6,20 +6,13 @@ form1 = ROOT.TFormula("form1", "abs(sin(x)/x)")
 rangeMin = 0.0
 rangeMax = 10.0
 sqroot = ROOT.TF1("sqroot", "x*gaus(0) + [3]*form1", rangeMin, rangeMax)
-sqroot.SetLineColor(4)
-sqroot.SetLineWidth(6)
 sqroot.SetParameters(10.0, 4.0, 1.0, 20.0)
 nBins = 200
 h1d = ROOT.TH1D("h1d", "Test random numbers", nBins, rangeMin, rangeMax)
 random_numbers = np.array([sqroot.GetRandom() for _ in range(10000)])
-counts,_=np.histogram(random_numbers, bins=200, range=(rangeMin, rangeMax))
-h1d[...]=counts
+h1d[...]=np.histogram(np.array([sqroot.GetRandom() for _ in range(10000)]), bins=nBins, range=(rangeMin, rangeMax))[0]
 # Create a canvas and draw the histogram
-topX = 200
-topY = 10
-width = 700
-height = 900
-plt.figure(figsize=(width/100, height/100))
+plt.figure(figsize=(7, 9))
 # First Function   
 plt.axes([0.05, 0.55, 0.90, 0.40])
 x = np.linspace(rangeMin, rangeMax, 500)
